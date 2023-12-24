@@ -14,13 +14,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('instagram/', include('instagram.urls'))
 """
+import os
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from dotenv import load_dotenv
+
+load_dotenv()
+admin_url = os.getenv("ADMIN_URL")
 
 urlpatterns = [
-    path("csroot/", admin.site.urls),  # URL Reverse
+    path(admin_url, admin.site.urls),  # URL Reverse
     path("instagram/", include("instagram.urls")),
 ]
 
