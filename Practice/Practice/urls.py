@@ -27,6 +27,7 @@ admin_url = os.getenv("ADMIN_URL")
 urlpatterns = [
     path(admin_url, admin.site.urls),  # URL Reverse
     path("instagram/", include("instagram.urls")),
+    path("accounts/", include("accounts.urls")),
 ]
 
 if settings.DEBUG:
