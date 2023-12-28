@@ -13,7 +13,13 @@ class PostAdmin(admin.ModelAdmin):
         "is_public",
         "created_at",
         "updated_at",
+        "tag_list",
     ]
+
+    def tag_list(self, obj):
+        return ", ".join(tag.name for tag in obj.tag_set.all())
+
+    tag_list.short_description = "Tags"
 
     def photo_tag(self, post):
         if post.photo:
