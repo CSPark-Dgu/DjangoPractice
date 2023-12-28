@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Post
+from .models import Post, Comment
 
 
 @admin.register(Post)
@@ -23,3 +23,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display_links = ["message"]
     search_fields = ["message"]
     list_filter = ["created_at", "is_public"]
+
+    @admin.register(Comment)
+    class CommentAdmin(admin.ModelAdmin):
+        pass
