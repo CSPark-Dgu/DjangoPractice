@@ -14,3 +14,6 @@ class Post(models.Model):
 
     def message_length(self):
         return len(self.message)
+
+    class Meta:
+        ordering = ["-id"]
