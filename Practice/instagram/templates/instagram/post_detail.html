@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <h2>author: {{ post.author }}</h2>
+</head>
+<body>
+    {% if post.photo %}
+        <img src="{{ post.photo.url }}", style = "max-width:80px">
+    {% endif %}
+    {{ post.message }}
+</body>
+</html>
