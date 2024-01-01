@@ -5,29 +5,41 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('instagram', '0003_post_photo'),
+        ("instagram", "0003_post_photo"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='post',
-            options={'ordering': ['-id']},
+            name="post",
+            options={"ordering": ["-id"]},
         ),
         migrations.AlterField(
-            model_name='post',
-            name='photo',
-            field=models.ImageField(blank=True, upload_to='instagram/%Y/%m/%d'),
+            model_name="post",
+            name="photo",
+            field=models.ImageField(blank=True, upload_to="instagram/%Y/%m/%d"),
         ),
         migrations.CreateModel(
-            name='Comment',
+            name="Comment",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('message', models.TextField()),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('post', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='instagram.post')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("message", models.TextField()),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "post",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="instagram.post"
+                    ),
+                ),
             ],
         ),
     ]
