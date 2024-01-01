@@ -31,4 +31,20 @@ def post_list(request: HttpResponse) -> HttpResponse:
 #     #     raise Http404
 #     return render(request, "instagram/post_detail.html", {"post": post})
 
-post_detail = DetailView.as_view(model=Post)  # CBV
+# post_detail = DetailView.as_view(
+#     model=Post, queryset=Post.objects.filter(is_public=True)
+# )  # CBV
+
+
+class PostDetailView(DetailView):
+    model = Post
+    queryset = Post.objects.filter(is_public=True)
+
+    def get_queryset(self):  # Override
+        qs = super().get_queryset()
+        if not self.request.user.is_authenticated:
+            qs = qs.filter(is_public=True)
+        return qs
+
+
+post_detail = PostDetailView.as_view()  # CBV
