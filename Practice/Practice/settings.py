@@ -62,7 +62,10 @@ ROOT_URLCONF = "Practice.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            # File System Template Loader
+            os.path.join(BASE_DIR, "Practice", "templates"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

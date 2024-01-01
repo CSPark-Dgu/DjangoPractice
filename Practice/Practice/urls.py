@@ -20,11 +20,21 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include, re_path
 from dotenv import load_dotenv
+from django.views.generic import TemplateView, RedirectView
 
 load_dotenv()
 admin_url = os.getenv("ADMIN_URL")
 
 urlpatterns = [
+    # path("", TemplateView.as_view(template_name="root.html"), name="root"),
+    path(
+        "",
+        RedirectView.as_view(
+            # url="/instagram/"),
+            pattern_name="instagram:post_list"
+        ),
+        name="root",
+    ),
     path(admin_url, admin.site.urls),  # URL Reverse
     path("instagram/", include("instagram.urls")),
     path("accounts/", include("accounts.urls")),
