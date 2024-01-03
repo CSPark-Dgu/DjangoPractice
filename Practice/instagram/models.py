@@ -1,5 +1,7 @@
 from django.db import models
 from django.conf import settings
+from django.urls import reverse
+
 
 # from django.contrib.auth.models import User   #User 모델 변경 가능성 존재. 권장 하지 않음
 
@@ -18,6 +20,9 @@ class Post(models.Model):
 
     def message_length(self):
         return len(self.message)
+
+    def get_absolute_url(self):
+        return reverse("instagram:post_detail", args=[self.pk])
 
     class Meta:
         ordering = ["-id"]
